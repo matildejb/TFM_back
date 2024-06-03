@@ -1,0 +1,25 @@
+@PORT = 3000
+
+@HOST = http://localhost:{{PORT}}
+
+
+GET {{HOST}}/api/users/userList
+Authorization: prueba
+###
+GET {{HOST}}/api/groups
+Authorization: prueba
+###
+POST {{HOST}}/api/groups/create
+Authorization: prueba
+Content-Type: application/json
+
+{
+    "titulo": "Viaje a Madrid",
+    "descripcion": "Un viaje a Madrid de 3 dias"
+}
+###
+PUT  {{HOST}}/api/groups/update
+Authorization: prueba
+###
+DELETE   {{HOST}}/api/groups/delete
+Authorization: prueba
