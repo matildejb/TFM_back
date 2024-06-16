@@ -1,4 +1,7 @@
 const Groups = require('../models/groups.model');
+const Users = require('../models/users.model');
+const Members = require('../models/members.model');
+const Debts = require('../models/debts.model');
 
 const getMyGroups = async (req, res) => {
     const userId = req.params.user_id;
@@ -13,10 +16,15 @@ const getMyGroups = async (req, res) => {
 
 const createGroup = async (req, res) => {
     const { title, description } = req.body;
+    const userId = req.user.id;
     try {
-        await Groups.insertGroup({ title, description });
+        const [groupResult] = await Groups.insertGroup({ title, description });
+        const groupId = groupResult.insertId;
+        await Members.insertAdminById(groupId, userId, 'admin');
+        Debts.insertDebt(groupId, userId, 0);
         res.status(201).json({ message: 'Grupo creado exitosamente' });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: "Error al crear el grupo" });
     }
 }

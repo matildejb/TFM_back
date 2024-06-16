@@ -1,22 +1,67 @@
-const insertMember = async (groupId, userId) => {  
-    const [admins] = await db.query('SELECT * FROM members WHERE groups_id = ? AND role = "admin"', [groupId]);
+const { selectByEmail } = require('./users.model');
 
-    let role = 'normal'; 
-    if (admins.length === 0) {
-        role = 'admin'; 
-    }
+const selectAll = (groupId) => {
+    const query = `
+        SELECT u.id, u.name, u.email
+        FROM members m
+        JOIN users u ON m.users_id = u.id
+        WHERE m.groups_id = ?;
+    `;
+    return db.query(query, [groupId]);
+};
 
+const selectMembersByGroupId = (groupId) => {
+    const query = `
+        SELECT u.id AS user_id, u.name, u.email
+        FROM members m
+        JOIN users u ON m.users_id = u.id
+        WHERE m.groups_id = ?;
+    `;
+    return db.query(query, [groupId]);
+};
+
+const insertAdminById = async (groupId, userId, role) => {
     const query = 'INSERT INTO members (groups_id, users_id, role) VALUES (?, ?, ?)';
     return db.query(query, [groupId, userId, role]);
-}
+};
+
+const insertMemberByEmail = async (groupId, userEmail) => {
+    const [users] = await selectByEmail(userEmail);
+    if (users.length === 0) {
+        throw new Error('Usuario no encontrado');
+    }
+    const userId = users[0].id;
+
+    const query = 'INSERT INTO members (groups_id, users_id) VALUES (?, ?)';
+    return db.query(query, [groupId, userId]);
+};
+
+const insertMemberById = async (groupId, userId) => {
+    const query = 'INSERT INTO members (groups_id, users_id) VALUES (?, ?)';
+    return db.query(query, [groupId, userId]);
+};
+
 
 const deleteMemberById = async (groupId, userId) => {
-    const query = 'DELETE FROM members WHERE groups_id = ? AND users_id = ?';
-    return db.query(query, [groupId, userId]);
+    const deleteDebtsQuery = 'DELETE FROM debts WHERE members_groups_id = ? AND members_users_id = ?';
+    await db.query(deleteDebtsQuery, [groupId, userId]);
+
+    const deleteMemberQuery = 'DELETE FROM members WHERE groups_id = ? AND users_id = ?';
+    return db.query(deleteMemberQuery, [groupId, userId]);
 }
+
+const checkIfAdmin = (groupId, userId) => {
+    const query = 'SELECT * FROM members WHERE groups_id = ? AND users_id = ? AND role = "admin"';
+    return db.query(query, [groupId, userId]);
+};
 
 
 module.exports = {
-    insertMember,
-    deleteMemberById
+    selectAll,
+    selectMembersByGroupId,
+    insertAdminById,
+    insertMemberByEmail,
+    insertMemberById,
+    deleteMemberById,
+    checkIfAdmin
 };

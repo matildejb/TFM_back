@@ -5,7 +5,7 @@ const selectAll = () => {
 const selectGroupsByUserId = (userId) => {
     const query = `
         SELECT g.id, g.title, g.description, g.notification
-        FROM groups g
+        FROM \`groups\` g
         INNER JOIN members m ON m.groups_id = g.id
         WHERE m.users_id = ?;
     `;
@@ -13,17 +13,17 @@ const selectGroupsByUserId = (userId) => {
 }
 
 const insertGroup = ({ title, description, notification }) => {
-    const query = 'INSERT INTO groups (title, description) VALUES (?, ?)';
+    const query = 'INSERT INTO `groups` (title, description) VALUES (?, ?)';
     return db.query(query, [title, description]);
 }
 
 const updateGroup = (groupId, { title, description, notification }) => {
-    const query = 'UPDATE groups SET title = ?, description = ?, notification = ? WHERE id = ?';
+    const query = 'UPDATE `groups` SET title = ?, description = ?, notification = ? WHERE id = ?';
     return db.query(query, [title, description, notification, groupId]);
 }
 
 const deleteGroup = (groupId) => {
-    const query = 'DELETE FROM groups WHERE id = ?';
+    const query = 'DELETE FROM `groups` WHERE id = ?';
     return db.query(query, [groupId]);
 }
 

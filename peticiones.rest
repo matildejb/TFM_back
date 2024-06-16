@@ -2,24 +2,106 @@
 
 @HOST = http://localhost:{{PORT}}
 
-
+### Recibir todos los users
 GET {{HOST}}/api/users/userList
-Authorization: prueba
-###
-GET {{HOST}}/api/groups
-Authorization: prueba
-###
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+### Recibir el perfil del usuario
+GET {{HOST}}/api/users/perfil
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+### Recibir los grupos de un usuario
+GET {{HOST}}/api/groups/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+### Crear un grupo
 POST {{HOST}}/api/groups/create
-Authorization: prueba
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
 Content-Type: application/json
 
 {
-    "titulo": "Viaje a Madrid",
-    "descripcion": "Un viaje a Madrid de 3 dias"
+    "title": "Un grupo",
+    "description": "Algo"
 }
-###
-PUT  {{HOST}}/api/groups/update
-Authorization: prueba
-###
-DELETE   {{HOST}}/api/groups/delete
-Authorization: prueba
+### Añadir miembro
+POST {{HOST}}/api/members/18/add
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Content-Type: application/json
+
+{
+    "email": "grace@example.com"
+}
+### Actualizar algo del grupo
+PUT  {{HOST}}/api/groups/update/13
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Content-Type: application/json
+
+{
+    "title": "Un grupo de pruebas",
+    "description": "Un viaje a Mallorca de 10 dias"
+}
+### Delete group
+DELETE {{HOST}}/api/groups/delete
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+
+### Delete user
+DELETE {{HOST}}/api/users/profile/delete/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiZXhwIjoxNzIxMTYyMDUyLCJpYXQiOjE3MTg1NzAwNTJ9.j7-vu6E2bJhWkIrVpktiTnu2VpjsVi39REhPn3COxP8
+
+### Register
+POST {{HOST}}/api/users/register
+Content-Type: application/json
+
+{
+    "name": "test",
+    "email": "test@example.com",
+    "username": "test",
+    "password": "password123",
+    "phone": 12345
+}
+
+### Login
+POST {{HOST}}/api/users/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "password123"
+}
+
+### Obtener todos los pagos de un grupo
+GET {{HOST}}/api/payments/18/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+
+### Crear un pago
+POST {{HOST}}/api/payments/18/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Content-Type: application/json
+
+{
+    "amount": 210,
+    "description": "Cena",
+    "participants": [
+        { "userId": 2 },
+        { "userId": 7 }
+    ]
+}
+
+### Eliminar un pago
+DELETE {{HOST}}/api/payments/13/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+
+### Actualizar un pago
+PUT {{HOST}}/api/payments/13/6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Content-Type: application/json
+
+{
+    "amount": 180,
+    "description": "Desayuno y compras en supermercado",
+    "participants": [
+        { "userId": 2 },
+        { "userId": 5 }
+    ]
+}
+
+### Obtener deudas de un usuario en un grupo
+GET {{HOST}}/api/debts/13/11/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko

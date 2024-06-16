@@ -1,16 +1,44 @@
 const Members = require('../models/members.model');
+const Users = require('../models/users.model');
+const Debts = require('../models/debts.model');
+
+const getAllMembers = async (req, res) => {
+    const groupId = req.params.group_id;
+
+    try {
+        const [members] = await Members.selectAll(groupId);
+        res.status(200).json(members);
+    } catch (error) {
+        res.status(500).json({ message: "Error al recuperar los miembros" });
+    }
+};
+
 
 const addMember = async (req, res) => {
     const groupId = req.params.group_id;
-    const { user_id, role } = req.body;
+    const { email } = req.body;
 
     try {
-        const [result] = await Members.insertMember(groupId, user_id, role);
-        res.status(201).json({ result });
+        const [users] = await Users.selectByEmail(email);
+        
+        if (users.length === 0) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        const userId = users[0].id;
+        const [result] = await Members.insertMemberById(groupId, userId);
+        
+        if (result.affectedRows === 0) {
+            return res.status(500).json({ message: 'Error al añadir el usuario al grupo' });
+        }
+
+        await Debts.insertDebt(groupId, userId, 0);
+        res.status(201).json({ message: 'Usuario añadido al grupo exitosamente' });
     } catch (error) {
-        res.status(500).json({ message: "Error al añadir el usuario al grupo" });
+        console.error('Error al añadir el usuario al grupo:', error);
+        res.status(500).json({ message: 'Error al añadir el usuario al grupo' });
     }
-}
+};
 
 const deleteMember = async (req, res) => {
     const groupId = req.params.group_id;
@@ -25,6 +53,7 @@ const deleteMember = async (req, res) => {
 }
 
 module.exports = {
+    getAllMembers,
     addMember,
     deleteMember
 };
