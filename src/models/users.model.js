@@ -33,9 +33,9 @@ const insert = ({ name, email, username, password, phone }) => {
     return db.query(query, [name, email, username, password, phone]);
 }
 
-const updateUserById = (userId, { name, email, password, phone }) => {
-    const query = 'UPDATE users SET name = ?, email = ?, username = ?, password = ?, phone = ? WHERE id = ?';
-    return db.query(query, [name, email, username, password, phone, userId]);
+const updateUserById = (userId, { name, email, username, phone }) => {
+    const query = 'UPDATE users SET name = ?, email = ?, username = ?, phone = ? WHERE id = ?';
+    return db.query(query, [name, email, username, phone, userId]);
 }
 
 const deleteUserById = (userId) => {

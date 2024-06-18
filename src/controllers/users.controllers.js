@@ -16,14 +16,20 @@ const getAllUsers = async (req, res) => {
 const updateUser = async (req, res, next) => {
     try {
         const { user_id } = req.params;
-        const [result] = await Users.updateUserById(user_id, req.body);
-        if (result.changedRows === 1) {            
-            const [[user]] = await Users.selectById(user_id);    
+        const { name, email, username, phone } = req.body;
+
+        const updateData = { name, email, username, phone };
+
+        const [result] = await Users.updateUserById(user_id, updateData);
+
+        if (result.affectedRows === 1) {
+            const [[user]] = await Users.selectById(user_id);
             res.json(user);
         } else {
             res.status(400).json({ error: 'Error al actualizar el usuario' });
-        }  
+        }
     } catch (err) {
+        console.error('Error updating user:', err);
         next(err);
     }
 }
@@ -91,22 +97,10 @@ const login = async (req, res, next) => {
     }
 };
 
-const getPerfil = (req, res, next) => {
+const getProfile = (req, res) => {
     res.json(req.user);
 }
 
-const getUserById = async (req, res) => {
-    try {
-        const [user] = await Users.selectById(req.params.userId);
-        if (!user) {
-             return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
-        res.status(200).json(user);
-    }catch (error) {
-        console.error('Error fetching user by ID:', error);
-        res.status(500).json({ message: 'Error del servidor' });
-     }
-}
 
 
 module.exports = {
@@ -115,6 +109,5 @@ module.exports = {
     deleteUser,
     register,
     login,
-    getPerfil,
-    getUserById
+    getProfile,
 }

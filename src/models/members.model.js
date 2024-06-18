@@ -20,6 +20,21 @@ const selectMembersByGroupId = (groupId) => {
     return db.query(query, [groupId]);
 };
 
+const selectMembersInMyGroups = async (userId) => {
+    const query = `
+        SELECT DISTINCT u.username, u.email
+        FROM members m
+        JOIN users u ON m.users_id = u.id
+        WHERE m.groups_id IN (
+            SELECT groups_id
+            FROM members
+            WHERE users_id = ?
+        )
+        AND u.id != ?  -- Excluye al propio usuario de la lista
+    `;
+    return db.query(query, [userId, userId]);
+};
+
 const insertAdminById = async (groupId, userId, role) => {
     const query = 'INSERT INTO members (groups_id, users_id, role) VALUES (?, ?, ?)';
     return db.query(query, [groupId, userId, role]);
@@ -59,6 +74,7 @@ const checkIfAdmin = (groupId, userId) => {
 module.exports = {
     selectAll,
     selectMembersByGroupId,
+    selectMembersInMyGroups,
     insertAdminById,
     insertMemberByEmail,
     insertMemberById,

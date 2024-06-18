@@ -24,6 +24,21 @@ const getPaymentParticipants = async (paymentId) => {
     return db.query(query, [paymentId]);
 };
 
+const getPaymentsByUserId = async (userId) => {
+    const query = 'SELECT * FROM payments WHERE paid_by = ?';
+    return db.query(query, [userId]);
+};
+
+const getPaymentsWhereUserId = async (userId) => {
+    const query = `
+        SELECT payments.*, payment_participants.amount as participant_amount
+        FROM payments
+        JOIN payment_participants ON payments.id = payment_participants.payment_id
+        WHERE payment_participants.user_id = ?;
+    `;
+    return db.query(query, [userId]);
+};
+
 const deletePaymentById = async (paymentId) => {
     const query = 'DELETE FROM payments WHERE id = ?';
     return db.query(query, [paymentId]);
@@ -49,6 +64,8 @@ module.exports = {
     getAllByGroupId,
     getPaymentById,
     getPaymentParticipants,
+    getPaymentsByUserId,
+    getPaymentsWhereUserId,
     deletePaymentById,
     updatePaymentById,
     updatePaymentParticipants

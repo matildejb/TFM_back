@@ -11,6 +11,61 @@ const getPayments = async (req, res) => {
     }
 };
 
+const getPaymentById = async (req, res) => {
+    const paymentId = req.params.payment_id;
+
+    try {
+        const [[payment]] = await Payments.getPaymentById(paymentId);
+
+        if (!payment) {
+            return res.status(404).json({ message: 'Pago no encontrado' });
+        }
+
+        const [participants] = await Payments.getPaymentParticipants(paymentId);
+
+        res.status(200).json({
+            payment,
+            participants
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener el pago' });
+    }
+};
+
+const getPaymentsByUserId = async (req, res) => {
+    const userId = req.params.user_id;
+
+    try {
+        const [payments] = await Payments.getPaymentsByUserId(userId);
+
+        if (payments.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron pagos realizados por este usuario' });
+        }
+
+        res.status(200).json(payments);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener los pagos' });
+    }
+};
+
+const getPaymentsWhereUserId = async (req, res) => {
+    const userId = req.params.user_id;
+
+    try {
+        const [payments] = await Payments.getPaymentsWhereUserId(userId);
+
+        if (payments.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron pagos en los que haya participado este usuario' });
+        }
+
+        res.status(200).json(payments);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener los pagos' });
+    }
+};
+
+
+
 const createPayment = async (req, res) => {
     const { amount, description, participants } = req.body;
     const payerId = req.user.id;
@@ -32,7 +87,6 @@ const createPayment = async (req, res) => {
 
         await Payments.addPaymentParticipants(paymentId, allParticipants);
 
-        // Actualizar las deudas de los participantes
         for (const participant of allParticipants) {
             const { userId, amount: participantAmount } = participant;
             await Debts.updateDebt(groupId, userId, -participantAmount); // Restar la parte del pago a los participantes
@@ -106,6 +160,9 @@ const updatePayment = async (req, res) => {
 
 module.exports = {
     getPayments,
+    getPaymentById,
+    getPaymentsByUserId,
+    getPaymentsWhereUserId,
     createPayment,
     deletePayment,
     updatePayment

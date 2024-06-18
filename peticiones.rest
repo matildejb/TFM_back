@@ -4,16 +4,27 @@
 
 ### Recibir todos los users
 GET {{HOST}}/api/users/userList
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Recibir el perfil del usuario
-GET {{HOST}}/api/users/perfil
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+GET {{HOST}}/api/users/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Actualizar usuario
+PUT {{HOST}}/api/users/profile/update/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+
+{
+    "name": "testuser",
+    "email": "testuser@example.com",
+    "username": "testuser",
+    "phone": 12345
+}
 ### Recibir los grupos de un usuario
 GET {{HOST}}/api/groups/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Crear un grupo
 POST {{HOST}}/api/groups/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 
 {
@@ -22,15 +33,19 @@ Content-Type: application/json
 }
 ### Añadir miembro
 POST {{HOST}}/api/members/18/add
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 
 {
     "email": "grace@example.com"
 }
+### Todos los diferentes miembros en tus grupos
+GET {{HOST}}/api/members/11/known
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+
 ### Actualizar algo del grupo
 PUT  {{HOST}}/api/groups/update/13
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 
 {
@@ -39,11 +54,11 @@ Content-Type: application/json
 }
 ### Delete group
 DELETE {{HOST}}/api/groups/delete
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 
 ### Delete user
-DELETE {{HOST}}/api/users/profile/delete/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiZXhwIjoxNzIxMTYyMDUyLCJpYXQiOjE3MTg1NzAwNTJ9.j7-vu6E2bJhWkIrVpktiTnu2VpjsVi39REhPn3COxP8
+DELETE {{HOST}}/api/users/profile/delete/13
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNzIxMjM4OTc2LCJpYXQiOjE3MTg2NDY5NzZ9.zPB23rX7Eok6rKgvG_nbJUajvYyu8pzbEAfvquPUcq4
 
 ### Register
 POST {{HOST}}/api/users/register
@@ -62,17 +77,31 @@ POST {{HOST}}/api/users/login
 Content-Type: application/json
 
 {
-    "email": "test@example.com",
+    "email": "testuser@example.com",
     "password": "password123"
 }
 
 ### Obtener todos los pagos de un grupo
 GET {{HOST}}/api/payments/18/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+
+### Obtener pago por ID
+GET {{HOST}}/api/payments/18/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+
+### Obtener pagos realizados por el usuario
+GET {{HOST}}/api/payments/user/2/paid
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+
+### Obtener pagos en los que el usuario ha participado
+GET {{HOST}}/api/payments/user/5/participated
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 
 ### Crear un pago
 POST {{HOST}}/api/payments/18/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 
 {
@@ -86,11 +115,11 @@ Content-Type: application/json
 
 ### Eliminar un pago
 DELETE {{HOST}}/api/payments/13/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 
 ### Actualizar un pago
 PUT {{HOST}}/api/payments/13/6
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 
 {
@@ -104,4 +133,4 @@ Content-Type: application/json
 
 ### Obtener deudas de un usuario en un grupo
 GET {{HOST}}/api/debts/13/11/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIwNzE3MjQ5LCJpYXQiOjE3MTgxMjUyNDl9.A-WrXcFJ0LeuHWCoQQjx4J-7tB64DdKxSTayCCinyko
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o

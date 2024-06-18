@@ -6,7 +6,7 @@ const { getMyGroups, updateGroup, createGroup, deleteGroup } = require('../../co
 router.get('/:user_id', getMyGroups);
 router.post('/create', createGroup)
 router.put('/update/:group_id', checkAdmin, updateGroup)
-router.delete('/delete/:group_id', deleteGroup)
+router.delete('/delete/:group_id', checkAdmin, deleteGroup)
 
 
 module.exports = router;

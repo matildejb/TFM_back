@@ -13,6 +13,20 @@ const getAllMembers = async (req, res) => {
     }
 };
 
+const getMembersInMyGroups = async (req, res) => {
+    const userId = req.user.id;  
+
+    try {
+        const [members] = await Members.selectMembersInMyGroups(userId);
+        if (members.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron miembros en los grupos del usuario' });
+        }
+        res.status(200).json(members);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener los miembros de los grupos del usuario' });
+    }
+};
 
 const addMember = async (req, res) => {
     const groupId = req.params.group_id;
@@ -54,6 +68,7 @@ const deleteMember = async (req, res) => {
 
 module.exports = {
     getAllMembers,
+    getMembersInMyGroups,
     addMember,
     deleteMember
 };
