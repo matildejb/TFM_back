@@ -43,6 +43,12 @@ const deleteUserById = (userId) => {
     return db.query(query, [userId]);
 }
 
+const updateProfileImage = (userId, profileImage) => {
+    const query = 'UPDATE users SET profile_image = ? WHERE id = ?';
+    return db.query(query, [profileImage, userId]);
+};
+
+
 module.exports = {
     selectAll,
     selectById,
@@ -51,6 +57,7 @@ module.exports = {
     selectUserByEmailOrUsername,
     insert,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    updateProfileImage
 };
 

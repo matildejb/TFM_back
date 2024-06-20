@@ -30,8 +30,7 @@ const checkAdmin = async (req, res, next) => {
         return res.status(403).json({ error: 'Debes ser administrador del grupo' });
     }
     next();
-}
-
+};
 
 
 module.exports = {

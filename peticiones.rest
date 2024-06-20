@@ -8,6 +8,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjox
 ### Recibir el perfil del usuario
 GET {{HOST}}/api/users/profile
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Recibir el perfil del usuario por ID
+GET {{HOST}}/api/users/6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Actualizar usuario
 PUT {{HOST}}/api/users/profile/update/11
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
@@ -134,3 +137,15 @@ Content-Type: application/json
 ### Obtener deudas de un usuario en un grupo
 GET {{HOST}}/api/debts/13/11/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+
+### Actualizar imagen de perfil
+PUT {{HOST}}/api/users/profile/image/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="profile_image"; filename="Imagen de test.jpg"
+Content-Type: image/jpeg
+
+< ../uploads/Imagen de test.jpg
+--boundary--

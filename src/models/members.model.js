@@ -22,7 +22,7 @@ const selectMembersByGroupId = (groupId) => {
 
 const selectMembersInMyGroups = async (userId) => {
     const query = `
-        SELECT DISTINCT u.username, u.email
+        SELECT DISTINCT u.id, u.username, u.email
         FROM members m
         JOIN users u ON m.users_id = u.id
         WHERE m.groups_id IN (
