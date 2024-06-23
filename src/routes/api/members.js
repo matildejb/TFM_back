@@ -4,7 +4,7 @@ const { addMember, deleteMember, getAllMembers, getMembersInMyGroups } = require
 const { checkAdmin } = require('../../helpers/middlewares');
 
 
-router.get('/:group_id/', getAllMembers);
+router.get('/:group_id', getAllMembers);
 router.get('/:user_id/known', getMembersInMyGroups)
 router.post('/:group_id/add', checkAdmin, addMember);
 router.delete('/:group_id/:user_id', checkAdmin, deleteMember);

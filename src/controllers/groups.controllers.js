@@ -14,6 +14,20 @@ const getMyGroups = async (req, res) => {
     }
 }
 
+const getGroupById = async (req, res) => {
+    const groupId = req.params.group_id;
+
+    try {
+        const [group] = await Groups.selectGroupById(groupId);
+        if (group.length === 0) {
+            return res.status(404).json({ message: 'Grupo no encontrado' });
+        }
+        res.status(200).json(group[0]);
+    } catch (error) {
+        res.status(500).json({ error: "Error al obtener el grupo" });
+    }
+}
+
 const createGroup = async (req, res) => {
     const { title, description } = req.body;
     const userId = req.user.id;
@@ -52,6 +66,7 @@ const deleteGroup = async (req, res) => {
 
 module.exports = {
     getMyGroups,
+    getGroupById,
     createGroup,
     updateGroup,
     deleteGroup

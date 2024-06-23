@@ -12,6 +12,11 @@ const selectGroupsByUserId = (userId) => {
     return db.query(query, [userId]);
 }
 
+const selectGroupById = (groupId) => {
+    const query = 'SELECT id, title, description FROM \`groups\` WHERE id = ?';
+    return db.query(query, [groupId]);
+};
+
 const insertGroup = ({ title, description, notification }) => {
     const query = 'INSERT INTO `groups` (title, description) VALUES (?, ?)';
     return db.query(query, [title, description]);
@@ -30,6 +35,7 @@ const deleteGroup = (groupId) => {
 module.exports = {
     selectAll,
     selectGroupsByUserId,
+    selectGroupById,
     insertGroup,
     updateGroup,
     deleteGroup

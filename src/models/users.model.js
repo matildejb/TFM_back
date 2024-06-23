@@ -7,6 +7,16 @@ const selectById = (userId) => {
     return db.query(query, [userId]);
 }
 
+const selectEmail = (userId) => {
+    const query = 'SELECT email FROM users WHERE id = ?'
+    return db.query(query, [userId]);
+}
+
+const selectPhoto = (userId) => {
+    const query = 'SELECT profile_image FROM users WHERE id = ?'
+    return db.query(query, [userId]);
+}
+
 const selectByEmail = (email) => {
     const query = 'SELECT id, password FROM users WHERE email = ?';
     return db.query(query, [email]);
@@ -27,20 +37,26 @@ const selectUserByEmailOrUsername = async (emailOrUsername) => {
     }
 };
 
+const selectUserDebts = (userId) => {
+    const query = `
+        SELECT p.id, p.amount, pp.user_id, pp.amount, p.members_groups_id FROM payments p LEFT JOIN payment_participants pp ON p.id = pp.payment_id
+        WHERE 
+            (p.paid_by = ? OR pp.user_id = ?)
+            AND pp.amount != 0
+    `;
+    return db.query(query, [userId, userId]);
+};
 
 const insert = ({ name, email, username, password, phone }) => {
     const query = 'INSERT INTO users (name, email, username, password, phone) VALUES (?, ?, ?, ?, ?)';
     return db.query(query, [name, email, username, password, phone]);
 }
 
-const updateUserById = (userId, { name, email, username, phone }) => {
-    const query = 'UPDATE users SET name = ?, email = ?, username = ?, phone = ? WHERE id = ?';
-    return db.query(query, [name, email, username, phone, userId]);
-}
+const updateUserById = (userId, { name, email, username, phone, password }) => {
+    const query =
+        "UPDATE users SET name = ?, email = ?, username = ?, phone = ?, password = ? WHERE id = ?";
+    return db.query(query, [name, email, username, phone, password, userId]);
 
-const deleteUserById = (userId) => {
-    const query = 'DELETE FROM users WHERE id = ?';
-    return db.query(query, [userId]);
 }
 
 const updateProfileImage = (userId, profileImage) => {
@@ -48,16 +64,24 @@ const updateProfileImage = (userId, profileImage) => {
     return db.query(query, [profileImage, userId]);
 };
 
+const deleteUserById = (userId) => {
+    const query = 'DELETE FROM users WHERE id = ?';
+    return db.query(query, [userId]);
+}
+
 
 module.exports = {
     selectAll,
     selectById,
     selectByEmail,
+    selectEmail,
+    selectPhoto,
     selectByPhone,
     selectUserByEmailOrUsername,
+    selectUserDebts,
     insert,
     updateUserById,
-    deleteUserById,
-    updateProfileImage
+    updateProfileImage,
+    deleteUserById
 };
 

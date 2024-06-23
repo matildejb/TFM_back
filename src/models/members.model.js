@@ -22,7 +22,7 @@ const selectMembersByGroupId = (groupId) => {
 
 const selectMembersInMyGroups = async (userId) => {
     const query = `
-        SELECT DISTINCT u.id, u.username, u.email
+        SELECT DISTINCT u.id, u.username, u.email, u.profile_image
         FROM members m
         JOIN users u ON m.users_id = u.id
         WHERE m.groups_id IN (
@@ -55,7 +55,6 @@ const insertMemberById = async (groupId, userId) => {
     const query = 'INSERT INTO members (groups_id, users_id) VALUES (?, ?)';
     return db.query(query, [groupId, userId]);
 };
-
 
 const deleteMemberById = async (groupId, userId) => {
     const deleteDebtsQuery = 'DELETE FROM debts WHERE members_groups_id = ? AND members_users_id = ?';

@@ -59,7 +59,7 @@ const deleteMember = async (req, res) => {
     const userId = req.params.user_id;
 
     try {
-        await Members.deleteMemberByIds(groupId, userId);
+        await Members.deleteMemberById(groupId, userId);
         res.status(200).json({ message: 'Miembro eliminado correctamente' });
     } catch (error) {
         res.status(500).json({ message: "Error al eliminar el miembro" });

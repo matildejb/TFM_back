@@ -1,8 +1,8 @@
 const Debts = require('../models/debts.model');
 
 const getDebtsById = async (req, res) => {
-    const userId = req.params.user_id; // Obtener el user_id de los parámetros de la URL
-    const groupId = req.params.group_id; // Obtener el group_id de los parámetros de la URL
+    const userId = req.params.user_id;
+    const groupId = req.params.group_id; 
 
     try {
         const [debts] = await Debts.getDebtsByUserId(groupId, userId);

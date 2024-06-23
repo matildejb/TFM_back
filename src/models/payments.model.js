@@ -1,6 +1,6 @@
-const createPayment = async (amount, description, payerId, groupId) => {
+const createPayment = async (amount, description, paid_by, groupId) => {
     const query = 'INSERT INTO payments (amount, description, paid_by, members_groups_id, created_at) VALUES (?, ?, ?, ?, NOW())';
-    return db.query(query, [amount, description, payerId, groupId]);
+    return db.query(query, [amount, description, paid_by, groupId]);
 };
 
 const addPaymentParticipants = async (paymentId, participants) => {
@@ -39,14 +39,19 @@ const getPaymentsWhereUserId = async (userId) => {
     return db.query(query, [userId]);
 };
 
-const deletePaymentById = async (paymentId) => {
-    const query = 'DELETE FROM payments WHERE id = ?';
-    return db.query(query, [paymentId]);
-};
+const getGroupMembersEmails = (groupId) => {
+    const query = `
+        SELECT users.email 
+        FROM users 
+        JOIN members ON users.id = members.users_id 
+        WHERE members.groups_id = ?
+    `;
+    return db.query(query, [groupId]);
+}
 
-const updatePaymentById = async (paymentId, amount, description) => {
-    const query = 'UPDATE payments SET amount = ?, description = ? WHERE id = ?';
-    return db.query(query, [amount, description, paymentId]);
+const updatePaymentById = async (paymentId, amount, description, paid_by) => {
+    const query = 'UPDATE payments SET amount = ?, description = ?, paid_by = ? WHERE id = ?';
+    return db.query(query, [amount, description, paid_by, paymentId]);
 };
 
 const updatePaymentParticipants = async (paymentId, participants) => {
@@ -58,6 +63,11 @@ const updatePaymentParticipants = async (paymentId, participants) => {
     return db.query(insertQuery, [values]);
 };
 
+const deletePaymentById = async (paymentId) => {
+    const query = 'DELETE FROM payments WHERE id = ?';
+    return db.query(query, [paymentId]);
+};
+
 module.exports = {
     createPayment,
     addPaymentParticipants,
@@ -66,7 +76,8 @@ module.exports = {
     getPaymentParticipants,
     getPaymentsByUserId,
     getPaymentsWhereUserId,
-    deletePaymentById,
+    getGroupMembersEmails,
     updatePaymentById,
-    updatePaymentParticipants
+    updatePaymentParticipants, 
+    deletePaymentById
 };
