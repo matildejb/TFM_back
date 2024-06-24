@@ -66,6 +66,7 @@ const getPaymentsWhereUserId = async (req, res) => {
     }
 };
 
+
 const createPayment = async (req, res) => {
     const { amount, description, paid_by, participants } = req.body;
     const groupId = req.params.group_id;
@@ -101,8 +102,8 @@ const createPayment = async (req, res) => {
         // Construir los detalles del correo electrónico
         const to = members.map(member => member.email).join(',');
         const subject = `Nuevo pago creado en el grupo ${groupTitle}`;
-        const text = `Se ha creado un nuevo pago de ${amount} &euro con la descripción: ${description}`;
-        const html = `<p>Se ha creado un nuevo pago de <b>${amount}</b> con la descripción: <b>${description}</b></p>`;
+        const text = `Se ha creado un nuevo pago de ${amount} € con la descripción: ${description}`;
+        const html = `<p>Se ha creado un nuevo pago de <b>${amount}</b> € con la descripción: <b>${description}</b></p>`;
 
         // Enviar el correo electrónico
         await sendMail(to, subject, text, html);

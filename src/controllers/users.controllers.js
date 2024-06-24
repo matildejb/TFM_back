@@ -105,9 +105,12 @@ const updateProfileImage = async (req, res) => {
         return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
     }
 
+    // Construir la URL de la imagen
+    const imageUrl = req.protocol + '://' + req.get('host') + '/uploads/' + profileImage;
+
     try {
-        await Users.updateProfileImage(userId, profileImage);
-        res.status(200).json({ message: 'Imagen de perfil actualizada correctamente' });
+        await Users.updateProfileImage(userId, imageUrl);
+        res.status(200).json({ message: 'Imagen de perfil actualizada correctamente', imageUrl });
     } catch (error) {
         console.error('Error al actualizar la imagen de perfil:', error);
         res.status(500).json({ error: 'Error al actualizar la imagen de perfil' });
@@ -136,14 +139,13 @@ const register = async (req, res, next) => {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
 
-        const user = usersRows[0]         
-        const userEmail = user.email
-        const userUsername = user.username
+        const user = usersRows[0];         
+        const userEmail = user.email;
 
         const to = userEmail;
-        const subject = `¡Bienvenido a SharExpen! ${userUsername}`;
+        const subject = `¡Bienvenido a SharExpen! ${userEmail}`;
         const text = `Bienvenido a la aplicación ShareExpen`;
-        const html = `<p>Inicia sesion ahora en SharExpen y disfruta de sus cosas`;
+        const html = `<p>Inicia sesion ahora en SharExpen y disfruta de sus funciones`;
 
         await sendMail(to, subject, text, html);
         res.status(201).json(result);

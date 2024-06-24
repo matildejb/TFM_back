@@ -19,16 +19,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 GET {{HOST}}/api/users/debts/14
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Recibir la foto del usuario
-GET {{HOST}}/api/users/photo/11
+GET {{HOST}}/api/users/photo/14
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
 ### Register
 POST {{HOST}}/api/users/register
 Content-Type: application/json
 
 {
-    "name": "Paco",
-    "email": "paco@gmail.com",
-    "username": "3",
+    "name": "Erlbon",
+    "email": "erlbonbonerl@gmail.com",
+    "username": "Erlbon",
     "password": "Password.123",
     "phone": 12345
 }
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 ### Actualizar imagen de perfil
 PUT {{HOST}}/api/users/profile/image/14
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
@@ -62,6 +62,7 @@ Content-Type: image/jpeg
 
 < ../uploads/Imagen de test.jpg
 --boundary--
+
 ### Delete user
 DELETE {{HOST}}/api/users/profile/delete/13
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNzIxMjM4OTc2LCJpYXQiOjE3MTg2NDY5NzZ9.zPB23rX7Eok6rKgvG_nbJUajvYyu8pzbEAfvquPUcq4
@@ -79,8 +80,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 Content-Type: application/json
 
 {
-    "title": "Un grupo de prueba para los pagos",
-    "description": "payments"
+    "title": "Comprobar el pago con Ramon",
+    "description": "Pagos"
 }
 ### Actualizar algo del grupo
 PUT  {{HOST}}/api/groups/update/13
@@ -108,7 +109,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 Content-Type: application/json
 
 {
-    "email": "alberto.suarez.ing@gmail.com"
+    "email": "ramonarmeropardo@gmail.com"
 }
 ### Eliminar un miembro
 DELETE {{HOST}}/api/members/22/15
@@ -116,14 +117,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 
 #PAYMENTS
 ### Obtener todos los pagos de un grupo
-GET {{HOST}}/api/payments/18/
+GET {{HOST}}/api/payments/21/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Obtener pago por ID
 GET {{HOST}}/api/payments/18/12
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 ### Obtener pagos realizados por el usuario
-GET {{HOST}}/api/payments/user/11/paid
+GET {{HOST}}/api/payments/user/14/paid
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 ### Obtener pagos en los que el usuario ha participado
@@ -136,10 +137,10 @@ Content-Type: application/json
 
 {
     "amount": 100,
-    "description": "Rezar a dios para que salgan los € (prueba2)",
+    "description": "Una prueba de pagos",
     "paid_by": 14,
     "participants": [
-        { "userId": 15 }
+        { "userId": 29 }
     ]
 }
 ### Actualizar un pago
@@ -152,7 +153,7 @@ Content-Type: application/json
     "description": "Viaje a las Maldivas - Actualizado",
     "paid_by": 14,
     "participants": [
-        { "userId": 15 }
+        { "userId": 14 }
     ]
 }
 ### Eliminar un pago

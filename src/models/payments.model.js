@@ -10,7 +10,12 @@ const addPaymentParticipants = async (paymentId, participants) => {
 };
 
 const getAllByGroupId = async (groupId) => {
-    const query = 'SELECT * FROM payments WHERE members_groups_id = ?';
+    const query = `
+        SELECT payments.*, users.name as payer_name
+        FROM payments
+        JOIN users ON payments.paid_by = users.id
+        WHERE payments.members_groups_id = ?
+    `;
     return db.query(query, [groupId]);
 };
 
@@ -48,6 +53,16 @@ const getGroupMembersEmails = (groupId) => {
     `;
     return db.query(query, [groupId]);
 }
+
+const getNameOfPayer = async (paymentId) => {
+    const query = `
+        SELECT users.name 
+        FROM users 
+        JOIN payments ON users.id = payments.paid_by 
+        WHERE payments.id = ?
+    `;
+    return db.query(query, [paymentId]);
+};
 
 const updatePaymentById = async (paymentId, amount, description, paid_by) => {
     const query = 'UPDATE payments SET amount = ?, description = ?, paid_by = ? WHERE id = ?';

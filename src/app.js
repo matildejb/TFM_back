@@ -16,29 +16,24 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'], 
 };
  
-app.get('uploads/:profile_image', cors(corsOptions), (req, res) => {
+app.get('/uploads/:profile_image', cors(corsOptions), (req, res) => {
   const token = req.query.token;
- 
-      if (!token) {
-        return res.status(403).send('Token is required');
+
+  if (!token) {
+    return res.status(403).send('Token is required');
   }
- 
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-        if (err) {
-            return res.status(403).send('Invalid token');
-      }
-     
-        const imagePath = path.join(__dirname, 'uploads', req.params.profile_image);
- 
-        fs.access(imagePath, fs.constants.F_OK, (err) => {
-            if (err) {
-                return res.status(404).send('Image not found');
-            }
- 
-            res.sendFile(imagePath);
-        });
-    });
- 
+
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).send('Invalid token');
+    }
+
+    const imagePath = path.join(__dirname, 'uploads', req.params.profile_image);
+
+    fs.access(imagePath, fs.constants.F_OK)
+      .then(() => res.sendFile(imagePath))
+      .catch(() => res.status(404).send('Image not found'));
+  });
 });
  
 app.use('/api', require('./routes/api'));
