@@ -1,0 +1,169 @@
+@PORT = 3000
+
+@HOST = http://localhost:{{PORT}}
+
+# USUARIOS
+### Recibir todos los users
+GET {{HOST}}/api/users/userList
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Recibir el perfil del usuario
+GET {{HOST}}/api/users/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+### Recibir el perfil del usuario por ID
+GET {{HOST}}/api/users/6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Recibir el email del usuario
+GET {{HOST}}/api/users/email/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+### Obtener deudas de un usuario
+GET {{HOST}}/api/users/debts/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Recibir la foto del usuario
+GET {{HOST}}/api/users/photo/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+### Register
+POST {{HOST}}/api/users/register
+Content-Type: application/json
+
+{
+    "name": "Erlbon",
+    "email": "erlbonbonerl@gmail.com",
+    "username": "Erlbon",
+    "password": "Password.123",
+    "phone": 12345
+}
+### Login
+POST {{HOST}}/api/users/login
+Content-Type: application/json
+
+{
+    "email": "iboedu@hotmail.com",
+    "password": "Password.123"
+}
+### Actualizar usuario
+PUT {{HOST}}/api/users/updateUser/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+
+{
+    "name": "testuser",
+    "email": "testuser@example.com",
+    "username": "testuser",
+    "phone": 12345
+}
+### Actualizar imagen de perfil
+PUT {{HOST}}/api/users/profile/image/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="profile_image"; filename="Imagen de test.jpg"
+Content-Type: image/jpeg
+
+< ../uploads/Imagen de test.jpg
+--boundary--
+
+### Delete user
+DELETE {{HOST}}/api/users/profile/delete/13
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNzIxMjM4OTc2LCJpYXQiOjE3MTg2NDY5NzZ9.zPB23rX7Eok6rKgvG_nbJUajvYyu8pzbEAfvquPUcq4
+
+#GROUPS
+### Recibir los grupos de un usuario
+GET {{HOST}}/api/groups/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Recibir el id de un grupo
+GET {{HOST}}/api/groups/group/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzIxNjEzNTc3LCJpYXQiOjE3MTkwMjE1Nzd9.6-XqdAh7RWFdC332VgRS2Hxx03H3CUQ8itxmGZJtvIo
+### Crear un grupo
+POST {{HOST}}/api/groups/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+Content-Type: application/json
+
+{
+    "title": "Comprobar el pago con Ramon",
+    "description": "Pagos"
+}
+### Actualizar algo del grupo
+PUT  {{HOST}}/api/groups/update/13
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+
+{
+    "title": "Un grupo de pruebas",
+    "description": "Un viaje a Mallorca de 10 dias"
+}
+### Delete group
+DELETE {{HOST}}/api/groups/delete
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+
+#MEMBERS
+### Recibir miembros de un grupo
+GET {{HOST}}/api/members/13
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Todos los diferentes miembros en tus grupos
+GET {{HOST}}/api/members/14/known
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Añadir miembro
+POST {{HOST}}/api/members/22/add
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzc0NTEwLCJpYXQiOjE3MTkxODI1MTB9.8Fqg7fhjpY6_bb6jtdLRKsEqOCAkBtD6alD-cEasVVE
+Content-Type: application/json
+
+{
+    "email": "ramonarmeropardo@gmail.com"
+}
+### Eliminar un miembro
+DELETE {{HOST}}/api/members/22/15
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+
+#PAYMENTS
+### Obtener todos los pagos de un grupo
+GET {{HOST}}/api/payments/21/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Obtener pago por ID
+GET {{HOST}}/api/payments/18/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+### Obtener pagos realizados por el usuario
+GET {{HOST}}/api/payments/user/14/paid
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+Content-Type: application/json
+### Obtener pagos en los que el usuario ha participado
+GET {{HOST}}/api/payments/user/8/participated
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+### Crear un pago
+POST {{HOST}}/api/payments/22/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+Content-Type: application/json
+
+{
+    "amount": 100,
+    "description": "Una prueba de pagos",
+    "paid_by": 14,
+    "participants": [
+        { "userId": 29 }
+    ]
+}
+### Actualizar un pago
+PUT {{HOST}}/api/payments/22/39
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA3MTgzLCJpYXQiOjE3MTkxMTUxODN9.D15J42sEz4JMdDan-VtKhb8uZfhRgJGLVOQKAFhuDEA
+Content-Type: application/json
+
+{
+    "amount": 320,
+    "description": "Viaje a las Maldivas - Actualizado",
+    "paid_by": 14,
+    "participants": [
+        { "userId": 14 }
+    ]
+}
+### Eliminar un pago
+DELETE {{HOST}}/api/payments/21/30
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzIxNzY4ODQ2LCJpYXQiOjE3MTkxNzY4NDZ9.Q5RR_z1VgAEA75CNIbAaSKiCm0k_i_FR81z0O7F9vDg
+
+#DEBTS
+### Obtener deudas de un usuario en un grupo
+GET {{HOST}}/api/debts/13/11/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+
+
+
