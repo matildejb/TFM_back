@@ -8,8 +8,12 @@ const getMyGroups = async (req, res) => {
 
     try {
         const [groups] = await Groups.selectGroupsByUserId(userId);
+        if (groups.length === 0) {
+            return res.status(404).json({ message: "No se encontraron grupos para este usuario" });
+        }
         res.status(200).json(groups);
     } catch (error) {
+        console.error('Error al obtener los grupos del usuario:', error);
         res.status(500).json({ error: "Error al obtener los grupos del usuario" });
     }
 }
@@ -45,9 +49,9 @@ const createGroup = async (req, res) => {
 
 const updateGroup = async (req, res) => {
     const groupId = req.params.group_id;
-    const { title, description, notification } = req.body;
+    const { title, description} = req.body;
     try {
-        await Groups.updateGroup(groupId, { title, description, notification });
+        await Groups.updateGroup(groupId, { title, description });
         res.status(200).json({ message: 'Grupo actualizado exitosamente' });
     } catch (error) {
         res.status(500).json({ error: "Error al actualizar el grupo" });
@@ -57,12 +61,21 @@ const updateGroup = async (req, res) => {
 const deleteGroup = async (req, res) => {
     const groupId = req.params.group_id;
     try {
-        await Groups.deleteGroup(groupId);
+        await Groups.deleteGroupDebts(groupId);
+        await Groups.deleteGroupMembers(groupId);
+        const result = await Groups.deleteGroup(groupId);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Grupo no encontrado' });
+        }
+
         res.status(200).json({ message: 'Grupo eliminado exitosamente' });
     } catch (error) {
+        console.error('Error al eliminar el grupo:', error);
         res.status(500).json({ error: "Error al eliminar el grupo" });
     }
-}
+};
+
 
 module.exports = {
     getMyGroups,

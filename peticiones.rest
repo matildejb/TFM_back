@@ -69,32 +69,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjox
 
 #GROUPS
 ### Recibir los grupos de un usuario
-GET {{HOST}}/api/groups/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+GET {{HOST}}/api/groups/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 ### Recibir el id de un grupo
-GET {{HOST}}/api/groups/group/3
+GET {{HOST}}/api/groups/group/29
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzIxNjEzNTc3LCJpYXQiOjE3MTkwMjE1Nzd9.6-XqdAh7RWFdC332VgRS2Hxx03H3CUQ8itxmGZJtvIo
 ### Crear un grupo
 POST {{HOST}}/api/groups/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 Content-Type: application/json
 
 {
-    "title": "Comprobar el pago con Ramon",
+    "title": "prueba4",
     "description": "Pagos"
 }
 ### Actualizar algo del grupo
-PUT  {{HOST}}/api/groups/update/13
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+PUT  {{HOST}}/api/groups/update/29
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 Content-Type: application/json
 
 {
-    "title": "Un grupo de pruebas",
-    "description": "Un viaje a Mallorca de 10 dias"
+    "title": "prueba",
+    "description": "Un viaje"
 }
 ### Delete group
-DELETE {{HOST}}/api/groups/delete
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+DELETE {{HOST}}/api/groups/delete/28
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 
 #MEMBERS
 ### Recibir miembros de un grupo
