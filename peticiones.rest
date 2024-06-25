@@ -41,15 +41,16 @@ Content-Type: application/json
     "password": "Password.123"
 }
 ### Actualizar usuario
-PUT {{HOST}}/api/users/updateUser/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
+PUT {{HOST}}/api/users/updateUser/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
 Content-Type: application/json
 
 {
-    "name": "testuser",
-    "email": "testuser@example.com",
-    "username": "testuser",
-    "phone": 12345
+    "name": "Ibon",
+    "email": "iboedu@hotmail.com",
+    "username": "iboedu6",
+    "phone": 12345,
+    "password": "Password.123"
 }
 ### Actualizar imagen de perfil
 PUT {{HOST}}/api/users/profile/image/14
@@ -80,8 +81,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 Content-Type: application/json
 
 {
-    "title": "prueba4",
-    "description": "Pagos"
+    "title": "Maria",
+    "description": "maria"
 }
 ### Actualizar algo del grupo
 PUT  {{HOST}}/api/groups/update/29
@@ -89,11 +90,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 Content-Type: application/json
 
 {
-    "title": "prueba",
+    "title": "pruebas",
     "description": "Un viaje"
 }
 ### Delete group
-DELETE {{HOST}}/api/groups/delete/28
+DELETE {{HOST}}/api/groups/delete/30
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 
 #MEMBERS
@@ -104,12 +105,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjox
 GET {{HOST}}/api/members/14/known
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Añadir miembro
-POST {{HOST}}/api/members/22/add
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzc0NTEwLCJpYXQiOjE3MTkxODI1MTB9.8Fqg7fhjpY6_bb6jtdLRKsEqOCAkBtD6alD-cEasVVE
+POST {{HOST}}/api/members/29/add
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 Content-Type: application/json
 
 {
-    "email": "ramonarmeropardo@gmail.com"
+    "email": "alberto.suarez.ing@gmail.com"
 }
 ### Eliminar un miembro
 DELETE {{HOST}}/api/members/22/15
@@ -128,10 +129,10 @@ GET {{HOST}}/api/payments/user/14/paid
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 Content-Type: application/json
 ### Obtener pagos en los que el usuario ha participado
-GET {{HOST}}/api/payments/user/8/participated
+GET {{HOST}}/api/payments/user/14/participated
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Crear un pago
-POST {{HOST}}/api/payments/22/create
+POST {{HOST}}/api/payments/29/create
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
 Content-Type: application/json
 
@@ -140,7 +141,7 @@ Content-Type: application/json
     "description": "Una prueba de pagos",
     "paid_by": 14,
     "participants": [
-        { "userId": 29 }
+        { "userId": 15 }
     ]
 }
 ### Actualizar un pago
@@ -157,8 +158,8 @@ Content-Type: application/json
     ]
 }
 ### Eliminar un pago
-DELETE {{HOST}}/api/payments/21/30
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzIxNzY4ODQ2LCJpYXQiOjE3MTkxNzY4NDZ9.Q5RR_z1VgAEA75CNIbAaSKiCm0k_i_FR81z0O7F9vDg
+DELETE {{HOST}}/api/payments/22/43
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxOTI0NTY4LCJpYXQiOjE3MTkzMzI1Njh9.xZk6Gu8vlCFnHjE9u6JArHocGs4h4NUB1Gq42AYpH8s
 
 #DEBTS
 ### Obtener deudas de un usuario en un grupo
