@@ -48,7 +48,7 @@ const getPhoto = async (req, res) => {
         if (user.length === 0 || !user[0].profile_image) {
             return res.status(404).json({ message: 'Foto no encontrada' });
         }
-        res.status(200).json(user[0].profile_image);
+           res.status(200).json({ profile_image: user[0].profile_image });
     } catch (error) {
         console.error('Error al recibir la foto:', error);
         res.status(500).json({ message: 'Error al recibir la foto' });
@@ -106,11 +106,11 @@ const updateProfileImage = async (req, res) => {
     }
 
     // Construir la URL de la imagen
-    const imageUrl = req.protocol + '://' + req.get('host') + '/uploads/' + profileImage;
+    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${profileImage}`;
 
     try {
         await Users.updateProfileImage(userId, imageUrl);
-        res.status(200).json({ message: 'Imagen de perfil actualizada correctamente', imageUrl });
+        res.status(200).json({ message: 'Imagen de perfil actualizada correctamente', profileImage: imageUrl });
     } catch (error) {
         console.error('Error al actualizar la imagen de perfil:', error);
         res.status(500).json({ error: 'Error al actualizar la imagen de perfil' });

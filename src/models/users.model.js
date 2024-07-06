@@ -59,9 +59,14 @@ const updateUserById = (userId, { name, email, username, phone, password }) => {
 
 }
 
-const updateProfileImage = (userId, profileImage) => {
+const updateProfileImage = async (userId, profileImage) => {
     const query = 'UPDATE users SET profile_image = ? WHERE id = ?';
-    return db.query(query, [profileImage, userId]);
+    try {
+        const result = await db.query(query, [profileImage, userId]);
+        return result;
+    } catch (error) {
+        throw error;
+    }
 };
 
 const deleteUserById = (userId) => {

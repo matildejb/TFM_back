@@ -19,8 +19,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjox
 GET {{HOST}}/api/users/debts/14
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNzIxMjQwNDY2LCJpYXQiOjE3MTg2NDg0NjZ9.1ze3xfwx9cqc55dXFVvbH9Eqv4f0zr-6OqifjEgNl4o
 ### Recibir la foto del usuario
-GET {{HOST}}/api/users/photo/14
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+GET {{HOST}}/api/users/photo/33
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMywiZXhwIjoxNzIyODQ4NjUxLCJpYXQiOjE3MjAyNTY2NTF9.JqwT_i3cMe79_JhOmqoEGfJv_AAiF_AwdV2K7lswckI
+Content-Type: multipart/form-data; boundary=boundary
 ### Register
 POST {{HOST}}/api/users/register
 Content-Type: application/json
@@ -37,8 +38,8 @@ POST {{HOST}}/api/users/login
 Content-Type: application/json
 
 {
-    "email": "iboedu@hotmail.com",
-    "password": "Password.123"
+    "email": "matildejimenezbedmar@hotmail.com",
+    "password": "Matilde31!"
 }
 ### Actualizar usuario
 PUT {{HOST}}/api/users/updateUser/14
@@ -53,8 +54,8 @@ Content-Type: application/json
     "password": "Password.123"
 }
 ### Actualizar imagen de perfil
-PUT {{HOST}}/api/users/profile/image/14
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNzIxNzA0MTI3LCJpYXQiOjE3MTkxMTIxMjd9.PXX0jv6GMWQfBjXkA5-Xo6kMTYrmGQfcPjg_usPkR2c
+PUT {{HOST}}/api/users/profile/image/33
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMywiZXhwIjoxNzIyODQ4NjUxLCJpYXQiOjE3MjAyNTY2NTF9.JqwT_i3cMe79_JhOmqoEGfJv_AAiF_AwdV2K7lswckI
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary

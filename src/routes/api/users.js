@@ -9,11 +9,11 @@ router.get('/profile', checkToken, getProfile);
 router.get('/:user_id', checkToken, getUserById);
 router.get('/email/:user_id', checkToken, getUserEmail)
 router.get('/debts/:user_id', checkToken, getUserDebts);
-router.get('/photo/:user_id', checkToken, getPhoto);
+router.put('/profile/image/:user_id', checkToken, upload.single('profile_image'), updateProfileImage);
+router.get('/profile/photo/:user_id', checkToken, getPhoto);
 router.post('/register', register);
 router.post('/login', login);
 router.put('/updateUser/:user_id', checkToken, updateUser);
-router.put('/profile/image/:user_id', checkToken, upload.single('profile_image'), updateProfileImage);
 router.delete('/profile/delete/:user_id', checkToken, deleteUser);
 
 module.exports = router;
